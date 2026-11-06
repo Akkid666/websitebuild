@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Builders</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(
+                110deg,
+                #087cf5,
+                #3455e8,
+                #7136c9,
+                #9225bd
+            );
+            font-family: 'Rajdhani', sans-serif;
+            color: white;
+        }
+
+        .welcome {
+            text-align: center;
+            padding-top: 65px;
+        }
+
+        .welcome h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(40px, 7vw, 75px);
+            font-weight: 900;
+            letter-spacing: 8px;
+            text-shadow: 0 0 25px #ffffff55;
+        }
+
+        .auth-container {
+            width: 90%;
+            max-width: 420px;
+            margin: 65px auto;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            background: none;
+            border: none;
+            color: #ffffffa0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            padding: 12px 5px;
+            cursor: pointer;
+        }
+
+        .tab.active {
+            color: white;
+            border-bottom: 2px solid white;
+            text-shadow: 0 0 12px white;
+        }
+
+        .form {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .form.active {
+            display: block;
+        }
+
+        .form h2, .logged-in h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 23px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 17px;
+            margin-bottom: 7px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ffffff55;
+            border-radius: 8px;
+            outline: none;
+            background: #ffffff18;
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 17px;
+        }
+
+        .input-group input::placeholder {
+            color: #ffffff90;
+        }
+
+        .input-group input:focus {
+            border-color: white;
+            box-shadow: 0 0 12px #ffffff30;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: white;
+            color: #6338c5;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 25px #ffffff55;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 17px;
+        }
+
+        .logged-in {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .logged-in p {
+            font-size: 19px;
+            margin-bottom: 25px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="welcome">
+    <h1>VÄLKOMMEN</h1>
+</header>
+
+<main class="auth-container">
+
+    <div id="auth">
+
+        <div class="tabs">
+            <button class="tab active" id="login-tab">
+                LOGGA IN
+            </button>
+
+            <button class="tab" id="register-tab">
+                REGISTRERA
+            </button>
+        </div>
+
+        <form class="form active" id="login">
+            <h2>Logga in</h2>
+
+            <div class="input-group">
+                <label for="login-email">E-post</label>
+                <input id="login-email" type="email"
+                    placeholder="Din e-postadress" required>
+            </div>
+
+            <div class="input-group">
+                <label for="login-password">Lösenord</label>
+                <input id="login-password" type="password"
+                    placeholder="Ditt lösenord" required>
+            </div>
+
+            <button class="submit-btn" type="submit">
+                LOGGA IN
+            </button>
+        </form>
+
+        <form class="form" id="register">
+            <h2>Skapa konto</h2>
+
+            <div class="input-group">
+                <label for="register-name">Användarnamn</label>
+                <input id="register-name" type="text"
+                    placeholder="Ditt användarnamn"
+                    minlength="3" maxlength="24" required>
+            </div>
+
+            <div class="input-group">
+                <label for="register-email">E-post</label>
+                <input id="register-email" type="email"
+                    placeholder="Din e-postadress" required>
+            </div>
+
+            <div class="input-group">
+                <label for="register-password">Lösenord</label>
+                <input id="register-password" type="password"
+                    placeholder="Skapa ett lösenord"
+                    minlength="8" required>
+            </div>
+
+            <button class="submit-btn" type="submit">
+                SKAPA KONTO
+            </button>
+        </form>
+
+        <p class="message" id="message" role="status"></p>
+
+    </div>
+
+    <div class="logged-in" id="logged-in">
+        <h2>Välkommen!</h2>
+        <p>Du är inloggad som <strong id="username"></strong></p>
+
+        <button class="submit-btn" id="logout">
+            LOGGA UT
+        </button>
+    </div>
+
+</main>
+
+<script>
+    const loginForm = document.getElementById("login");
+    const registerForm = document.getElementById("register");
+    const message = document.getElementById("message");
+
+    function showTab(name) {
+        loginForm.classList.toggle("active", name === "login");
+        registerForm.classList.toggle("active", name === "register");
+
+        document.getElementById("login-tab")
+            .classList.toggle("active", name === "login");
+
+        document.getElementById("register-tab")
+            .classList.toggle("active", name === "register");
+
+        message.textContent = "";
+    }
+
+    document.getElementById("login-tab").onclick = () => {
+        showTab("login");
+    };
+
+    document.getElementById("register-tab").onclick = () => {
+        showTab("register");
+    };
+
+    async function submitForm(event, endpoint) {
+        event.preventDefault();
+
+        const form = event.target;
+        const button = form.querySelector("button[type=submit]");
+
+        button.disabled = true;
+        button.textContent = "VÄNTA...";
+        message.textContent = "";
+
+        const data = Object.fromEntries(
+            new FormData(form).entries()
+        );
+
+        try {
+            const response = await fetch(endpoint, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "same-origin",
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || "Något gick fel.");
+            }
+
+            form.reset();
+            await checkLogin();
+
+        } catch (error) {
+            message.textContent = error.message;
+        } finally {
+            button.disabled = false;
+            button.textContent =
+                endpoint === "/api/login"
+                    ? "LOGGA IN"
+                    : "SKAPA KONTO";
+        }
+    }
+
+    loginForm.elements[0].name = "email";
+    loginForm.elements[1].name = "password";
+
+    registerForm.elements[0].name = "username";
+    registerForm.elements[1].name = "email";
+    registerForm.elements[2].name = "password";
+
+    loginForm.addEventListener("submit", event => {
+        submitForm(event, "/api/login");
+    });
+
+    registerForm.addEventListener("submit", event => {
+        submitForm(event, "/api/register");
+    });
+
+    async function checkLogin() {
+        try {
+            const response = await fetch("/api/me", {
+                credentials: "same-origin"
+            });
+
+            const result = await response.json();
+
+            if (result.loggedIn) {
+                document.getElementById("auth").style.display = "none";
+                document.getElementById("logged-in").style.display = "block";
+
+                document.getElementById("username").textContent =
+                    result.user.username;
+            } else {
+                document.getElementById("auth").style.display = "block";
+                document.getElementById("logged-in").style.display = "none";
+            }
+        } catch {
+            message.textContent = "Kunde inte kontrollera inloggningen.";
+        }
+    }
+
+    document.getElementById("logout").onclick = async () => {
+        try {
+            const response = await fetch("/api/logout", {
+                method: "POST"
+            });
+
+            if (!response.ok) {
+                throw new Error("Utloggningen misslyckades.");
+            }
+
+            await checkLogin();
+        } catch (error) {
+            message.textContent = error.message;
+        }
+    };
+
+    checkLogin();
+</script>
+
+</body>
+</html>
